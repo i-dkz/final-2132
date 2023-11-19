@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
 
 $primary_color: teal;
 $secondary_color: rgb(46, 45, 45);
-$primary_text_color: white;
+$primary_text_color: rgb(0, 0, 0);
+
+$bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
+$bg-width: 50px;
+$bg-height: 50px;
 
 * {
     margin: 0;
@@ -18,6 +23,19 @@ $primary_text_color: white;
     min-height: 100vh;
     background-color: $secondary_color;
     font-family: 'Inter', sans-serif;
+    color: #000000;
+  
+    text-align: center;
+    background: url($bg-url) repeat 0 0;
+    
+    -webkit-animation: bg-scrolling-reverse 3s infinite; /* Safari 4+ */
+    -moz-animation:    bg-scrolling-reverse 2s infinite; /* Fx 5+ */
+    -o-animation:      bg-scrolling-reverse 3s infinite; /* Opera 12+ */
+    animation:         bg-scrolling-reverse 3s infinite; /* IE 10+ */
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function:    linear;
+    -o-animation-timing-function:      linear;
+    animation-timing-function:         linear;
   }
 
   main, header{
@@ -67,23 +85,21 @@ $primary_text_color: white;
     font-weight: bold;
   }
 
-  .front {
-    background-color: #e0e0e0;
-  }
+
 
   .back {
     transform: rotateY(180deg);
-    background-color: #a0c0a0;
   }
 
   .keyboard {
     display: flex;
     flex-direction: column;
     width: 400px;
+    
   }
 
   .key {
-    border: 1px solid grey;
+    border: 0.5px solid rgba(128, 128, 128, 0.521);
     border-radius: 5px;
     color: $primary_text_color;
     width: 40px;
@@ -94,11 +110,13 @@ $primary_text_color: white;
     font-size: 20px;
     cursor: pointer; 
     transition: background-color 0.3s, transform 0.2s;
+    backdrop-filter: blur(1px);
   }
   
   .key:hover {
-    background-color: lightgrey; 
-    color: black;
+    background-color: rgb(29, 29, 29); 
+    color: rgb(255, 255, 255);
+    opacity: 90%;
   }
   
   .key:active {
@@ -110,3 +128,39 @@ $primary_text_color: white;
     display: flex;
     justify-content: center;
   }
+
+
+/* Exo thin font from Google. */
+// @import url(https://fonts.googleapis.com/css?family=Exo:100);
+
+/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
+
+
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% { background-position: $bg-width $bg-height; }
+}
+@-moz-keyframes    bg-scrolling-reverse {
+  100% { background-position: $bg-width $bg-height; }
+}
+@-o-keyframes      bg-scrolling-reverse {
+  100% { background-position: $bg-width $bg-height; }
+}
+@keyframes         bg-scrolling-reverse {
+  100% { background-position: $bg-width $bg-height; }
+}
+
+@-webkit-keyframes bg-scrolling {
+  0% { background-position: $bg-width $bg-height; }
+}
+@-moz-keyframes    bg-scrolling {
+  0% { background-position: $bg-width $bg-height; }
+}
+@-o-keyframes      bg-scrolling {
+  0% { background-position: $bg-width $bg-height; }
+}
+@keyframes         bg-scrolling {
+  0% { background-position: $bg-width $bg-height; }
+}
+
+
