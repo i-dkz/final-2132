@@ -19,6 +19,9 @@ main, header {
   width: 100vw;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 header {
@@ -66,4 +69,39 @@ h1 {
 .back {
   transform: rotateY(180deg);
   background-color: #a0c0a0;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.key {
+  border: 1px solid grey;
+  border-radius: 5px;
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.key:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.key:active {
+  transform: scale(0.9); /* Add a pressing effect on click */
+}
+
+.top-row, .mid-row, .bottom-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
