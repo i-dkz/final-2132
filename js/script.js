@@ -62,8 +62,8 @@ class Game {
   
         // Add Batman spinning logo animation
         $("main").append(`
-          <img src="images/trollface.png">
-        `);
+        <img src="images/tobey.png" class="zoom-rotate">
+      `);
   
         // You can perform other actions here, such as resetting the game.
       }
@@ -145,3 +145,10 @@ class Game {
     const keyboard = new Keyboard(word);
   });
   
+
+  $(document).ready(function () {
+    $("main").on("animationend", ".zoom-rotate", function () {
+      // Animation has ended, you can perform additional actions if needed
+      console.log("Animation ended");
+    });
+  });

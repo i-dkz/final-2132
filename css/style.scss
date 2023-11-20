@@ -179,3 +179,16 @@ $bg-height: 50px;
 }
 
 
+@keyframes zoomRotate {
+  0% {
+    transform: scale(0.1) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(1440deg); /* You can adjust the number of degrees for more rotations */
+  }
+}
+
+.zoom-rotate {
+  animation: zoomRotate 1.5s forwards;
+}
