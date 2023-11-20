@@ -72,7 +72,7 @@ class Game {
         $(".game img").attr("src", `images/${bodyParts[0]}.png`);
         $(".grim-reaper").attr("src", `images/reaper-dead.png`)
         $("main").removeClass("show-grim-reaper").addClass("hide-grim-reaper");
-      }, 3000);
+      }, 1800);
     }, 1500);
   }
 
@@ -111,7 +111,7 @@ class Game {
             `);
           }, 1000);
         }, 1500); // Adjust the delay duration as needed
-      }, 7000); // Set a minimal delay
+      }, 5500); // Set a minimal delay
     }
   }
 }
