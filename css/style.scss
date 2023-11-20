@@ -29,10 +29,10 @@ $bg-height: 50px;
     text-align: center;
     background: url($bg-url) repeat 0 0;
     
-    -webkit-animation: bg-scrolling-reverse 3s infinite; /* Safari 4+ */
-    -moz-animation:    bg-scrolling-reverse 2s infinite; /* Fx 5+ */
-    -o-animation:      bg-scrolling-reverse 3s infinite; /* Opera 12+ */
-    animation:         bg-scrolling-reverse 3s infinite; /* IE 10+ */
+    -webkit-animation: bg-scrolling-reverse 3s infinite; 
+    -moz-animation:    bg-scrolling-reverse 2s infinite; 
+    -o-animation:      bg-scrolling-reverse 3s infinite; 
+    animation:         bg-scrolling-reverse 3s infinite; 
     -webkit-animation-timing-function: linear;
     -moz-animation-timing-function:    linear;
     -o-animation-timing-function:      linear;
@@ -135,7 +135,7 @@ $bg-height: 50px;
   }
   
   .key:active {
-    transform: scale(0.90); /* Add a pressing effect on click */
+    transform: scale(0.90); 
   }
   
   .top-row, .mid-row, .bottom-row {
@@ -170,17 +170,36 @@ $bg-height: 50px;
   }
   
   .button:active {
-    transform: scale(0.90); /* Add a pressing effect on click */
+    transform: scale(0.90);
   }
   
 
-/* Exo thin font from Google. */
-// @import url(https://fonts.googleapis.com/css?family=Exo:100);
 
-/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
+  .grim-reaper {
+
+    position: fixed;
+    top: 100px;
+    left: 70%; 
+    opacity: 0; 
+
+ 
+    transition: opacity 4s ease, left 2.5s ;
+  }
+
+ 
+  .show-grim-reaper .grim-reaper {
+    left: 47%; 
+    opacity: 1; 
+  }
 
 
-/* Animations */
+  .hide-grim-reaper .grim-reaper {
+    left: 100%; 
+    opacity: 0; 
+    transition: opacity 2s ease, left 4s ease;
+  }
+
+
 @-webkit-keyframes bg-scrolling-reverse {
   100% { background-position: $bg-width $bg-height; }
 }
@@ -214,7 +233,7 @@ $bg-height: 50px;
   }
 
   100% {
-    transform: scale(1.5) rotate(1440deg); /* You can adjust the number of degrees for more rotations */
+    transform: scale(1.5) rotate(1440deg); 
   }
 }
 

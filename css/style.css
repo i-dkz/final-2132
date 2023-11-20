@@ -16,8 +16,8 @@ body {
   font-family: "Inter", sans-serif;
   color: #000000;
   text-align: center;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0; /* Safari 4+ */ /* Fx 5+ */ /* Opera 12+ */
-  animation: bg-scrolling-reverse 3s infinite; /* IE 10+ */
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+  animation: bg-scrolling-reverse 3s infinite;
   animation-timing-function: linear;
 }
 
@@ -113,7 +113,7 @@ h1 {
 }
 
 .key:active {
-  transform: scale(0.9); /* Add a pressing effect on click */
+  transform: scale(0.9);
 }
 
 .top-row, .mid-row, .bottom-row {
@@ -145,12 +145,27 @@ h1 {
 }
 
 .button:active {
-  transform: scale(0.9); /* Add a pressing effect on click */
+  transform: scale(0.9);
 }
 
-/* Exo thin font from Google. */
-/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
-/* Animations */
+.grim-reaper {
+  position: fixed;
+  top: 100px;
+  left: 70%;
+  opacity: 0;
+  transition: opacity 4s ease, left 2.5s;
+}
+
+.show-grim-reaper .grim-reaper {
+  left: 47%;
+  opacity: 1;
+}
+
+.hide-grim-reaper .grim-reaper {
+  left: 100%;
+  opacity: 0;
+  transition: opacity 2s ease, left 4s ease;
+}
 @keyframes bg-scrolling-reverse {
   100% {
     background-position: 50px 50px;
@@ -166,7 +181,7 @@ h1 {
     transform: scale(0.1) rotate(0deg);
   }
   100% {
-    transform: scale(1.5) rotate(1440deg); /* You can adjust the number of degrees for more rotations */
+    transform: scale(1.5) rotate(1440deg);
   }
 }
 .zoom-rotate {

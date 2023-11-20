@@ -34,6 +34,7 @@ const bodyParts = [
   "left-leg",
   "right-arm",
   "left-arm",
+  "dead",
 ];
 
 const words = [
@@ -57,10 +58,26 @@ class Game {
   updateLastImage() {
     this.bodyPartsIndex++;
     $(".game img").attr("src", `images/${bodyParts[this.bodyPartsIndex]}.png`);
+
+    setTimeout(() => {
+      this.bodyPartsIndex++;
+      $(".game img").attr(
+        "src",
+        `images/${bodyParts[this.bodyPartsIndex]}.png`
+      );
+
+      // Toggle the class to show the grim reaper
+      $("main").addClass("show-grim-reaper");
+      setTimeout(() => {
+        $(".game img").attr("src", `images/${bodyParts[0]}.png`);
+        $(".grim-reaper").attr("src", `images/reaper-dead.png`)
+        $("main").removeClass("show-grim-reaper").addClass("hide-grim-reaper");
+      }, 3000);
+    }, 1500);
   }
 
   updateBodyPart() {
-    if (this.bodyPartsIndex < this.maxBodyPartsIndex - 1) {
+    if (this.bodyPartsIndex < this.maxBodyPartsIndex - 2) {
       this.bodyPartsIndex++;
       console.log(this.bodyPartsIndex);
       $(".game img").attr(
@@ -73,7 +90,7 @@ class Game {
       $(".key").removeClass(".key").addClass("key-pressed");
       console.log(this.bodyPartsIndex, ": last one");
 
-      // Small delay before appending the spinning logo
+    //   Small delay before appending the spinning logo
       setTimeout(() => {
         $("main").html(""); // Clear the inner HTML of the main container
 
@@ -90,11 +107,11 @@ class Game {
           `);
           setTimeout(() => {
             $("main").append(`
-                <div class="button">REDEEM YOURSELF</div>
+                <div class="button">REDEEM YOURSELF</button>
             `);
           }, 1000);
         }, 1500); // Adjust the delay duration as needed
-      }, 2000); // Set a minimal delay
+      }, 7000); // Set a minimal delay
     }
   }
 }
