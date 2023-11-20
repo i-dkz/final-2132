@@ -66,11 +66,10 @@ class Game {
         `images/${bodyParts[this.bodyPartsIndex]}.png`
       );
 
-      // Toggle the class to show the grim reaper
       $("main").addClass("show-grim-reaper");
       setTimeout(() => {
         $(".game img").attr("src", `images/${bodyParts[0]}.png`);
-        $(".grim-reaper").attr("src", `images/reaper-dead.png`)
+        $(".grim-reaper").attr("src", `images/reaper-dead.png`);
         $("main").removeClass("show-grim-reaper").addClass("hide-grim-reaper");
       }, 1800);
     }, 1500);
@@ -85,21 +84,17 @@ class Game {
         `images/${bodyParts[this.bodyPartsIndex]}.png`
       );
     } else {
-      // Update the last image
       this.updateLastImage();
       $(".key").removeClass(".key").addClass("key-pressed");
       console.log(this.bodyPartsIndex, ": last one");
 
-    //   Small delay before appending the spinning logo
       setTimeout(() => {
-        $("main").html(""); // Clear the inner HTML of the main container
+        $("main").html("");
 
-        // Add Batman spinning logo animation
         $("main").append(`
           <img src="images/tobey.png" class="zoom-rotate">
         `);
 
-        // Another delay before appending the "you let him die!" content
         setTimeout(() => {
           $("main").append(`
             <h1>you let him die!</h1>
@@ -109,9 +104,13 @@ class Game {
             $("main").append(`
                 <div class="button">REDEEM YOURSELF</button>
             `);
+
+            $(".button").click(function () {
+              location.reload();
+            });
           }, 1000);
-        }, 1500); // Adjust the delay duration as needed
-      }, 5500); // Set a minimal delay
+        }, 1500);
+      }, 5500);
     }
   }
 }
@@ -138,7 +137,6 @@ class Word {
   }
 
   flipCard(keyId) {
-    // Find all occurrences of the clicked key in the word
     const matchingIndexes = this.word.reduce((indexes, letter, index) => {
       if (letter === keyId) {
         indexes.push(index);
@@ -147,11 +145,9 @@ class Word {
     }, []);
 
     if (matchingIndexes.length === 0) {
-      // No matching letters, update the body part
       this.game.updateBodyPart();
     }
 
-    // Flip all corresponding cards
     matchingIndexes.forEach((matchingIndex) => {
       const card = $(`.card[data-index="${matchingIndex}"]`);
       card.toggleClass("flipped");
@@ -165,20 +161,12 @@ class Word {
 
 class Keyboard {
   constructor(word) {
-    // Add click event listeners to all keys
     $(".key").click(function (event) {
-      // Get the ID of the clicked key
       const keyId = $(this).attr("id");
 
-      // Check if the key has already been pressed
       if (!$(this).hasClass("pressed")) {
-        // Call the flipCard method of the Word class based on the clicked key
         word.flipCard(keyId);
-
-        // Add a class to indicate that the key has been pressed
         $(this).removeClass("key").addClass("key-pressed").addClass("pressed");
-
-        // Remove the click event listener for this key
         $(this).off("click");
       }
     });
@@ -193,7 +181,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $("main").on("animationend", ".zoom-rotate", function () {
-    // Animation has ended, you can perform additional actions if needed
     console.log("Animation ended");
   });
 });
