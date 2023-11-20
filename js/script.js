@@ -27,6 +27,7 @@ const alphabet = [
   "z",
 ];
 const bodyParts = [
+  "pole",
   "head",
   "torso",
   "right-leg",
@@ -42,13 +43,37 @@ const words = [
   "aliens",
 ];
 
-class Game {}
-
-class Man {}
-
-class Word {
+class Game {
     constructor() {
+      this.game = $(".game");
+      this.bodyPartsIndex = 0;
+      this.maxBodyPartsIndex = bodyParts.length - 1;
+  
+      this.game.append(`<img src="images/${bodyParts[this.bodyPartsIndex]}.png">`);
+    }
+  
+    updateBodyPart() {
+      if (this.bodyPartsIndex < this.maxBodyPartsIndex) {
+        this.bodyPartsIndex++;
+        $(".game img").attr("src", `images/${bodyParts[this.bodyPartsIndex]}.png`);
+      } else {
+        // Game over condition
+        $("main").html(""); // Clear the inner HTML of the main container
+  
+        // Add Batman spinning logo animation
+        $("main").append(`
+          <img src="images/trollface.png">
+        `);
+  
+        // You can perform other actions here, such as resetting the game.
+      }
+    }
+  }
+  
+  class Word {
+    constructor(game) {
       this.word = words[1].split("");
+      this.game = game;
   
       this.word.forEach((element, index) => {
         $(".cards").append(`
@@ -75,14 +100,19 @@ class Word {
         return indexes;
       }, []);
   
+      if (matchingIndexes.length === 0) {
+        // No matching letters, update the body part
+        this.game.updateBodyPart();
+      }
+  
       // Flip all corresponding cards
       matchingIndexes.forEach((matchingIndex) => {
         const card = $(`.card[data-index="${matchingIndex}"]`);
-        card.toggleClass('flipped');
+        card.toggleClass("flipped");
   
-        const isFlipped = card.hasClass('flipped');
-        const rotation = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
-        card.find('.card-inner').css('transform', rotation);
+        const isFlipped = card.hasClass("flipped");
+        const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+        card.find(".card-inner").css("transform", rotation);
       });
     }
   }
@@ -93,16 +123,15 @@ class Word {
       $(".key").click(function (event) {
         // Get the ID of the clicked key
         const keyId = $(this).attr("id");
-
+  
         // Check if the key has already been pressed
         if (!$(this).hasClass("pressed")) {
           // Call the flipCard method of the Word class based on the clicked key
           word.flipCard(keyId);
-        
+  
           // Add a class to indicate that the key has been pressed
           $(this).removeClass("key").addClass("key-pressed").addClass("pressed");
-
-          
+  
           // Remove the click event listener for this key
           $(this).off("click");
         }
@@ -110,11 +139,9 @@ class Word {
     }
   }
   
-  
   $(document).ready(function () {
-    const word = new Word();
+    const game = new Game();
+    const word = new Word(game);
     const keyboard = new Keyboard(word);
   });
-  
-  
   
