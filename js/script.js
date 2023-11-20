@@ -50,39 +50,71 @@ class Word {
     constructor() {
       this.word = words[1].split("");
   
-      this.word.forEach((element) => {
+      this.word.forEach((element, index) => {
         $(".cards").append(`
-          <div class="card">
+          <div class="card" data-index="${index}">
             <div class="card-inner">
               <div class="card-face front">
                 <img src="images/underscore.png" alt="_" />
               </div>
               <div class="card-face back">
-                <img src="images/${element}.png"/>
+                <img src="images/${element}.png" alt="${element.toUpperCase()}" />
               </div>
             </div>
           </div>
         `);
       });
     }
+  
+    flipCard(keyId) {
+      // Find all occurrences of the clicked key in the word
+      const matchingIndexes = this.word.reduce((indexes, letter, index) => {
+        if (letter === keyId) {
+          indexes.push(index);
+        }
+        return indexes;
+      }, []);
+  
+      // Flip all corresponding cards
+      matchingIndexes.forEach((matchingIndex) => {
+        const card = $(`.card[data-index="${matchingIndex}"]`);
+        card.toggleClass('flipped');
+  
+        const isFlipped = card.hasClass('flipped');
+        const rotation = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        card.find('.card-inner').css('transform', rotation);
+      });
+    }
   }
   
+  class Keyboard {
+    constructor(word) {
+      // Add click event listeners to all keys
+      $(".key").click(function (event) {
+        // Get the ID of the clicked key
+        const keyId = $(this).attr("id");
 
-class Keyboard {
-  constructor() {
-    // Add click event listeners to all keys
-    $(".key").click((event) => {
-      // Get the ID of the clicked key
-      let keyId = $(event.currentTarget).attr("id");
+        // Check if the key has already been pressed
+        if (!$(this).hasClass("pressed")) {
+          // Call the flipCard method of the Word class based on the clicked key
+          word.flipCard(keyId);
+        
+          // Add a class to indicate that the key has been pressed
+          $(this).removeClass("key").addClass("key-pressed").addClass("pressed");
 
-      // Implement your logic based on the clicked key
-      console.log("Key clicked:", keyId);
-    });
+          
+          // Remove the click event listener for this key
+          $(this).off("click");
+        }
+      });
+    }
   }
-}
-
-// Instantiate the Keyboard class when the document is ready
-$(document).ready(function () {
-  const keyboard = new Keyboard();
-  const word = new Word();
-});
+  
+  
+  $(document).ready(function () {
+    const word = new Word();
+    const keyboard = new Keyboard(word);
+  });
+  
+  
+  
