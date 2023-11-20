@@ -100,6 +100,7 @@ $bg-height: 50px;
   }
 
   .key {
+    background-color: $secondary_text_color;
     border: 0.5px solid rgba(128, 128, 128, 0.521);
     border-radius: 5px;
     color: $primary_text_color;
@@ -110,8 +111,8 @@ $bg-height: 50px;
     align-items: center;
     font-size: 20px;
     cursor: pointer; 
-    transition: background-color 0.3s, transform 0.2s;
-    backdrop-filter: blur(1px);
+    transition: background-color 0.3s, transform 0s;
+
   }
 
   .key-pressed {
@@ -125,7 +126,6 @@ $bg-height: 50px;
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    backdrop-filter: blur(1px);
   }
   
   .key:hover {
@@ -144,6 +144,35 @@ $bg-height: 50px;
     justify-content: center;
   }
 
+
+  .button {
+    border: 0.5px solid rgba(128, 128, 128, 0.192);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    border-radius: 5px;
+    color: $primary_text_color;
+    background-color: $secondary_text_color;
+    width: 230px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    
+    transition: background-color 0.3s, transform 0s;
+  }
+
+  .button:hover {
+    cursor: pointer; 
+    background-color: rgb(29, 29, 29); 
+    color: rgb(255, 255, 255);
+    opacity: 90%;
+  }
+  
+  .button:active {
+    transform: scale(0.90); /* Add a pressing effect on click */
+  }
+  
 
 /* Exo thin font from Google. */
 // @import url(https://fonts.googleapis.com/css?family=Exo:100);
@@ -185,7 +214,7 @@ $bg-height: 50px;
   }
 
   100% {
-    transform: scale(1) rotate(1440deg); /* You can adjust the number of degrees for more rotations */
+    transform: scale(1.5) rotate(1440deg); /* You can adjust the number of degrees for more rotations */
   }
 }
 
