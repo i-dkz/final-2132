@@ -56,6 +56,10 @@ $bg-height: 50px;
     color: $primary_text_color;
   }
 
+  .cards {
+    display: flex;
+  }
+
   .card {
     width: 100px;
     height: 100px;
