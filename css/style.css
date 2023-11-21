@@ -122,7 +122,7 @@ h1 {
   justify-content: center;
 }
 
-.button {
+.button, .submit {
   border: 0.5px solid rgba(128, 128, 128, 0.192);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -137,14 +137,14 @@ h1 {
   transition: background-color 0.3s, transform 0s;
 }
 
-.button:hover {
+.button:hover, .submit:hover {
   cursor: pointer;
   background-color: rgb(29, 29, 29);
   color: rgb(255, 255, 255);
   opacity: 90%;
 }
 
-.button:active {
+.button:active, .submit:active {
   transform: scale(0.9);
 }
 
