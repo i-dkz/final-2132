@@ -85,7 +85,7 @@ class Game {
       );
     } else {
       this.updateLastImage();
-      $(".key").removeClass(".key").addClass("key-pressed");
+      $(".key").off("click").removeClass("key").addClass("key-pressed");
       console.log(this.bodyPartsIndex, ": last one");
 
       setTimeout(() => {
