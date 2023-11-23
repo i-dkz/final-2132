@@ -106,7 +106,7 @@ class Game {
             `);
 
             $(".button").click(function () {
-              location.reload();
+              location.reload(true);
             });
           }, 1000);
         }, 1500);
@@ -117,7 +117,7 @@ class Game {
 
 class Word {
   constructor(game) {
-    this.word = words[1].split("");
+    this.word = words[Math.floor(Math.random() * words.length)].split("");
     this.game = game;
 
     this.word.forEach((element, index) => {
