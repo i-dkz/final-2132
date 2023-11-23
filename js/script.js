@@ -37,12 +37,28 @@ const bodyParts = [
   "dead",
 ];
 
-const words = [
-  "antidisestablishmentarianism",
-  "javascript",
-  "polymorphism",
-  "aliens",
-];
+const words = new Map([
+  ["javascript", "Web scripting language."],
+  ["polymorphism", "Versatile function."],
+  ["aliens", "Extraterrestrial beings."],
+  ["algorithm", "Problem-solving procedure."],
+  ["programming", "Code creation process."],
+  ["developer", "Code writer."],
+  ["database", "Electronic data collection."],
+  ["function", "Task-specific code block."],
+  ["variable", "Named memory location."],
+  ["loop", "Repeated instruction set."],
+  ["html", "Web markup language."],
+  ["css", "Style sheet language."],
+  ["git", "Version control system."],
+  ["nodejs", "JavaScript runtime."],
+  ["framework", "Standardized toolset."],
+  ["responsive", "Device-friendly design."],
+  ["api", "Software interaction rules."],
+  ["debugging", "Defect resolution process."],
+  ["frontend", "User interface."],
+  ["backend", "Server-side logic."],
+]);
 
 class Game {
   constructor() {
@@ -116,8 +132,17 @@ class Game {
 }
 
 class Word {
+  
+
   constructor(game) {
-    this.word = words[Math.floor(Math.random() * words.length)].split("");
+
+    const wordArray = Array.from(words.keys());
+    this.random = Math.floor(Math.random() * wordArray.length);
+
+
+    this.word = wordArray[this.random].split("");
+    console.log(this.word)
+    this.hint = words.get(this.word);
     this.game = game;
 
     this.word.forEach((element, index) => {
@@ -128,7 +153,7 @@ class Word {
                 <img src="images/underscore.png" alt="_" />
               </div>
               <div class="card-face back">
-                <img src="images/${element}.png" alt="${element.toUpperCase()}" />
+                <img src="images/${element}.png" alt="${element.toLowerCase()}" />
               </div>
             </div>
           </div>
