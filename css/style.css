@@ -166,6 +166,12 @@ h1 {
   opacity: 0;
   transition: opacity 2s ease, left 4s ease;
 }
+
+.instructions {
+  position: fixed;
+  bottom: 60px;
+  left: 400px;
+}
 @keyframes bg-scrolling-reverse {
   100% {
     background-position: 50px 50px;

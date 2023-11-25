@@ -197,6 +197,12 @@ $bg-height: 50px;
     transition: opacity 2s ease, left 4s ease;
   }
 
+  .instructions {
+    position: fixed;
+    bottom: 60px;
+    left: 400px;
+  }
+
 
 @-webkit-keyframes bg-scrolling-reverse {
   100% { background-position: $bg-width $bg-height; }
