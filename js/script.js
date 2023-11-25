@@ -28,6 +28,7 @@ const alphabet = [
 ];
 const bodyParts = [
   "pole",
+  "rope",
   "head",
   "torso",
   "right-leg",
