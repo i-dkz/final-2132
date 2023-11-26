@@ -171,30 +171,37 @@ class Word {
       const isFlipped = $(".card").hasClass("flipped");
       const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
       $(".card .card-inner").css("transform", rotation);
-      // Trigger success condition, e.g., display a success message
-      setTimeout(() => {
-        $("main").html("");
 
-        $("main").append(`
-          <img src="images/jj.png" class="zoom-rotate jj">
-        `);
+      setTimeout(() => {
+        $(".game img").attr("src", `images/released.png`);
 
         setTimeout(() => {
+
+          $("main").html("");
+  
           $("main").append(`
-            <h1>you saved him!</h1>
-            <span>your INFAMOUS!</span>
+            <img src="images/jj.png" class="zoom-rotate jj">
           `);
+  
           setTimeout(() => {
             $("main").append(`
-                <div class="button">Save more</button>
+              <h1>you saved him!</h1>
+              <span>your INFAMOUS!</span>
             `);
-
-            $(".button").click(function () {
-              location.reload(true);
-            });
-          }, 1000);
+            setTimeout(() => {
+              $("main").append(`
+                  <div class="button">Save more</button>
+              `);
+  
+              $(".button").click(function () {
+                location.reload(true);
+              });
+            }, 1000);
+          }, 1500);
         }, 1500);
-      }, 5500);
+      }, 2000);
+      // Trigger success condition, e.g., display a success message
+
     }
     
   }
@@ -244,7 +251,7 @@ $(document).ready(function () {
     // Clear the input field
     letterInput.val("");
     // Remove the "submit" class after submission
-    submitButton.addClass("disabled").removeClass();
+    submitButton.addClass("disabled").removeClass("submit");
   });
 });
 
