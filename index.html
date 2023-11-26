@@ -53,8 +53,10 @@
         </div>
       </div>
       <img class="instructions" src="images/instructions.png" alt="">
-      <input type="text" id="value" name="value">
-      <span class="submit">submit</span>
+      <form id="letterForm">
+        <input type="text" id="letterInput" name="letterInput" minlength="1" maxlength="1">
+        <button type="submit" class="disabled">Submit</button>
+      </form>
     </main>
   </body>
 </html>

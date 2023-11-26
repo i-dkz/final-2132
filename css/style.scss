@@ -5,6 +5,7 @@ $primary_color: teal;
 $secondary_color: rgb(46, 45, 45);
 $primary_text_color: rgb(0, 0, 0);
 $secondary_text_color: white;
+$disabled_color: grey;
 
 $bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
 $bg-width: 50px;
@@ -173,10 +174,24 @@ $bg-height: 50px;
     transform: scale(0.90);
   }
   
+  .disabled {
+    border: 0.5px solid rgba(128, 128, 128, 0.192);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: $disabled_color;
+    background-color: $secondary_text_color;
+    width: 230px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    
+    transition: background-color 0.3s, transform 0s;
+  }
 
 
   .grim-reaper {
-
     position: fixed;
     top: 100px;
     left: 70%; 
@@ -202,6 +217,8 @@ $bg-height: 50px;
     bottom: 60px;
     left: 400px;
   }
+
+
 
 
 @-webkit-keyframes bg-scrolling-reverse {

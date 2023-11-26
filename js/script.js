@@ -203,6 +203,34 @@ $(document).ready(function () {
   const game = new Game();
   const word = new Word(game);
   const keyboard = new Keyboard(word);
+
+  const letterInput = $("#letterInput");
+  const submitButton = $(".disabled"); // Initialize with the submit class
+
+  // Add an event listener to the input for keyup
+  letterInput.on("input", function () {
+    const submittedLetter = letterInput.val().toLowerCase();
+
+    // Check if the submitted letter is a valid key
+    const isValidLetter = /^[a-z]$/.test(submittedLetter);
+
+    // Toggle the "submit" class based on the validity of the letter
+    submitButton.addClass("submit", isValidLetter).removeClass("disabled", isValidLetter);
+  });
+
+  // Add an event listener to the form for letter submission
+  $("#letterForm").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting and refreshing the page
+    const submittedLetter = letterInput.val().toLowerCase();
+
+    // Trigger the click event on the corresponding key element
+    $(`.key[id="${submittedLetter}"]`).click();
+
+    // Clear the input field
+    letterInput.val("");
+    // Remove the "submit" class after submission
+    submitButton.addClass("disabled");
+  });
 });
 
 $(document).ready(function () {
