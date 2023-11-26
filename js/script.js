@@ -1,31 +1,3 @@
-const alphabet = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
 const bodyParts = [
   "pole",
   "rope",
@@ -234,7 +206,7 @@ $(document).ready(function () {
     // Clear the input field
     letterInput.val("");
     // Remove the "submit" class after submission
-    submitButton.addClass("disabled");
+    submitButton.addClass("disabled").removeClass("submit");
   });
 });
 
