@@ -21,7 +21,8 @@ body {
   animation-timing-function: linear;
 }
 
-main, header {
+main,
+header {
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -79,9 +80,9 @@ h1 {
 }
 
 .key {
-  background-color: white;
-  border: 0.5px solid rgba(128, 128, 128, 0.521);
   border-radius: 5px;
+  border: 0.5px solid rgba(128, 128, 128, 0.521);
+  background-color: white;
   color: rgb(0, 0, 0);
   width: 40px;
   height: 40px;
@@ -94,8 +95,8 @@ h1 {
 }
 
 .key-pressed {
-  border: 0.5px solid rgba(128, 128, 128, 0.521);
   border-radius: 5px;
+  border: 0.5px solid rgba(128, 128, 128, 0.521);
   background-color: rgb(46, 45, 45);
   color: white;
   width: 40px;
@@ -116,18 +117,21 @@ h1 {
   transform: scale(0.9);
 }
 
-.top-row, .mid-row, .bottom-row {
+.top-row,
+.mid-row,
+.bottom-row {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.button, .submit {
-  border: 0.5px solid rgba(128, 128, 128, 0.192);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.button,
+.submit {
   border-radius: 5px;
-  color: rgb(0, 0, 0);
+  border: 0.5px solid rgba(128, 128, 128, 0.521);
   background-color: white;
+  color: rgb(0, 0, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 230px;
   height: 40px;
   display: flex;
@@ -137,23 +141,25 @@ h1 {
   transition: background-color 0.3s, transform 0s;
 }
 
-.button:hover, .submit:hover {
+.button:hover,
+.submit:hover {
   cursor: pointer;
   background-color: rgb(29, 29, 29);
   color: rgb(255, 255, 255);
   opacity: 90%;
 }
 
-.button:active, .submit:active {
+.button:active,
+.submit:active {
   transform: scale(0.9);
 }
 
 .disabled {
-  border: 0.5px solid rgba(128, 128, 128, 0.192);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  color: grey;
+  border: 0.5px solid rgba(128, 128, 128, 0.192);
   background-color: white;
+  color: grey;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 230px;
   height: 40px;
   display: flex;
