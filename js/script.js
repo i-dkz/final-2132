@@ -67,7 +67,6 @@ class Game {
   updateBodyPart() {
     if (this.bodyPartsIndex < this.maxBodyPartsIndex - 2) {
       this.bodyPartsIndex++;
-      console.log(this.bodyPartsIndex);
       $(".game img").attr(
         "src",
         `images/${bodyParts[this.bodyPartsIndex]}.png`
@@ -75,7 +74,6 @@ class Game {
     } else {
       this.updateLastImage();
       $(".key").off("click").removeClass("key").addClass("key-pressed");
-      console.log(this.bodyPartsIndex, ": last one");
 
       $(".card").addClass("flipped")
       const isFlipped = $(".card").hasClass("flipped");
@@ -117,9 +115,9 @@ class Word {
     const wordArray = Array.from(words.keys());
     this.random = Math.floor(Math.random() * wordArray.length);
 
-
+    this.correctlyGuessedLetters = [];
     this.word = wordArray[this.random].split("");
-    console.log(this.word)
+
     this.hint = words.get(this.word);
     this.game = game;
 
@@ -140,18 +138,23 @@ class Word {
   }
   
   flipCard(keyId) {
+
     const matchingIndexes = this.word.reduce((indexes, letter, index) => {
       if (letter === keyId) {
         indexes.push(index);
+        this.correctlyGuessedLetters.push(letter)
       }
       return indexes;
     }, []);
+
+
 
     if (matchingIndexes.length === 0) {
       this.game.updateBodyPart();
     }
 
     matchingIndexes.forEach((matchingIndex) => {
+
       const card = $(`.card[data-index="${matchingIndex}"]`);
       card.toggleClass("flipped");
 
@@ -159,6 +162,41 @@ class Word {
       const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
       card.find(".card-inner").css("transform", rotation);
     });
+    const allLettersGuessed = this.correctlyGuessedLetters.length === this.word.length;
+    
+    if (allLettersGuessed) {
+      $(".key").off("click").removeClass("key").addClass("key-pressed");
+
+      $(".card").addClass("flipped")
+      const isFlipped = $(".card").hasClass("flipped");
+      const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+      $(".card .card-inner").css("transform", rotation);
+      // Trigger success condition, e.g., display a success message
+      setTimeout(() => {
+        $("main").html("");
+
+        $("main").append(`
+          <img src="images/jj.png" class="zoom-rotate jj">
+        `);
+
+        setTimeout(() => {
+          $("main").append(`
+            <h1>you saved him!</h1>
+            <span>your INFAMOUS!</span>
+          `);
+          setTimeout(() => {
+            $("main").append(`
+                <div class="button">Save more</button>
+            `);
+
+            $(".button").click(function () {
+              location.reload(true);
+            });
+          }, 1000);
+        }, 1500);
+      }, 5500);
+    }
+    
   }
 }
 
@@ -206,7 +244,7 @@ $(document).ready(function () {
     // Clear the input field
     letterInput.val("");
     // Remove the "submit" class after submission
-    submitButton.addClass("disabled").removeClass("submit");
+    submitButton.addClass("disabled").removeClass();
   });
 });
 
