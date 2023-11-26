@@ -105,6 +105,11 @@ class Game {
       $(".key").off("click").removeClass("key").addClass("key-pressed");
       console.log(this.bodyPartsIndex, ": last one");
 
+      $(".card").addClass("flipped")
+      const isFlipped = $(".card").hasClass("flipped");
+      const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+      $(".card .card-inner").css("transform", rotation);
+
       setTimeout(() => {
         $("main").html("");
 
@@ -161,7 +166,7 @@ class Word {
         `);
     });
   }
-
+  
   flipCard(keyId) {
     const matchingIndexes = this.word.reduce((indexes, letter, index) => {
       if (letter === keyId) {
