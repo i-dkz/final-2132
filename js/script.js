@@ -75,7 +75,7 @@ class Game {
       this.updateLastImage();
       $(".key").off("click").removeClass("key").addClass("key-pressed");
 
-      $(".card").addClass("flipped")
+      $(".card").addClass("flipped");
       const isFlipped = $(".card").hasClass("flipped");
       const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
       $(".card .card-inner").css("transform", rotation);
@@ -108,20 +108,19 @@ class Game {
 }
 
 class Word {
-  
-
   constructor(game) {
-
     const wordArray = Array.from(words.keys());
     this.random = Math.floor(Math.random() * wordArray.length);
 
     this.correctlyGuessedLetters = [];
-    this.word = wordArray[this.random].split("");
+    this.word = wordArray[this.random];
+    this.splitWord = this.word.split("");
 
     this.hint = words.get(this.word);
+
     this.game = game;
 
-    this.word.forEach((element, index) => {
+    this.splitWord.forEach((element, index) => {
       $(".cards").append(`
           <div class="card" data-index="${index}">
             <div class="card-inner">
@@ -135,26 +134,29 @@ class Word {
           </div>
         `);
     });
-  }
-  
-  flipCard(keyId) {
 
-    const matchingIndexes = this.word.reduce((indexes, letter, index) => {
+    $(".cards").append(`
+      <div class="hint-container">
+        <div class="hint">?</div>
+        <div class="tooltip">${this.hint}</div>
+      </div>
+      `);
+  }
+
+  flipCard(keyId) {
+    const matchingIndexes = this.splitWord.reduce((indexes, letter, index) => {
       if (letter === keyId) {
         indexes.push(index);
-        this.correctlyGuessedLetters.push(letter)
+        this.correctlyGuessedLetters.push(letter);
       }
       return indexes;
     }, []);
-
-
 
     if (matchingIndexes.length === 0) {
       this.game.updateBodyPart();
     }
 
     matchingIndexes.forEach((matchingIndex) => {
-
       const card = $(`.card[data-index="${matchingIndex}"]`);
       card.toggleClass("flipped");
 
@@ -162,12 +164,13 @@ class Word {
       const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
       card.find(".card-inner").css("transform", rotation);
     });
-    const allLettersGuessed = this.correctlyGuessedLetters.length === this.word.length;
-    
+    const allLettersGuessed =
+      this.correctlyGuessedLetters.length === this.splitWord.length;
+
     if (allLettersGuessed) {
       $(".key").off("click").removeClass("key").addClass("key-pressed");
 
-      $(".card").addClass("flipped")
+      $(".card").addClass("flipped");
       const isFlipped = $(".card").hasClass("flipped");
       const rotation = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
       $(".card .card-inner").css("transform", rotation);
@@ -176,23 +179,22 @@ class Word {
         $(".game img").attr("src", `images/released.png`);
 
         setTimeout(() => {
-
           $("main").html("");
-  
+
           $("main").append(`
             <img src="images/jj.png" class="zoom-rotate jj">
           `);
-  
+
           setTimeout(() => {
             $("main").append(`
               <h1>you saved him!</h1>
-              <span>your INFAMOUS!</span>
+              <span>you're INFAMOUS!</span>
             `);
             setTimeout(() => {
               $("main").append(`
                   <div class="button">Save more</button>
               `);
-  
+
               $(".button").click(function () {
                 location.reload(true);
               });
@@ -201,9 +203,7 @@ class Word {
         }, 1500);
       }, 2000);
       // Trigger success condition, e.g., display a success message
-
     }
-    
   }
 }
 
@@ -237,7 +237,9 @@ $(document).ready(function () {
     const isValidLetter = /^[a-z]$/.test(submittedLetter);
 
     // Toggle the "submit" class based on the validity of the letter
-    submitButton.addClass("submit", isValidLetter).removeClass("disabled", isValidLetter);
+    submitButton
+      .addClass("submit", isValidLetter)
+      .removeClass("disabled", isValidLetter);
   });
 
   // Add an event listener to the form for letter submission
